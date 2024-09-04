@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="root" prefHeight="493.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ly.pt.Controller.Dashboard">
+   <children>
+      <ImageView fitHeight="496.0" fitWidth="913.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/background.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="328.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Shop" wrappingWidth="224.2734375">
+         <font>
+            <Font name="Javanese Text" size="48.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Text>
+      <ImageView fitHeight="222.0" fitWidth="233.0" layoutX="164.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/icons8-book-100.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="192.0" fitWidth="193.0" layoutX="519.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/icons8-customer-100.png" />
+         </image>
+      </ImageView>
+      <JFXButton buttonType="RAISED" layoutX="207.0" layoutY="172.0" onAction="#btnItemsOnAction" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #3498db;" text="Items">
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="547.0" layoutY="172.0" onAction="#btnCustomerOnAction" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #3498db;" text="Customer">
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>
