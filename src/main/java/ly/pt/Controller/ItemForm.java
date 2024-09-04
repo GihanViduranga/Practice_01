@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import ly.pt.db.DbConnection;
+import ly.pt.model.item;
+import ly.pt.repository.itemRepo;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -34,23 +36,12 @@ public class ItemForm {
         String qty = txtQTY.getText();
         String price = txtPrice.getText();
 
-        String sql = "INSERT INTO items (Code,ItemName,Quantity,Price) VALUES (?,?,?,?)";
-
-
         try {
-            Connection connection = DbConnection.getInstance().getConnection();
-            PreparedStatement pstm = connection.prepareStatement(sql);
-
-            pstm.setString(1, code);
-            pstm.setString(2, itemName);
-            pstm.setString(3, qty);
-            pstm.setString(4, price);
-
-            boolean isSaved = pstm.executeUpdate() > 0;
+            boolean isSaved = itemRepo.Save(new item(code,itemName,qty,price));
             if (isSaved) {
                 new Alert(Alert.AlertType.INFORMATION, "Item Saved Successfully").show();
             }else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                new Alert(Alert.AlertType.ERROR).show();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -66,22 +57,14 @@ public class ItemForm {
         String qty = txtQTY.getText();
         String price = txtPrice.getText();
 
-        String sql = "UPDATE items SET ItemName=?, Quantity=?, Price=? WHERE Code=?";
+
 
         try {
-            Connection connection = DbConnection.getInstance().getConnection();
-            PreparedStatement pstm = connection.prepareStatement(sql);
-
-            pstm.setString(1, itemName);
-            pstm.setString(2, qty);
-            pstm.setString(3, price);
-            pstm.setString(4, code);
-
-            boolean isUpdated = pstm.executeUpdate() > 0;
+            boolean isUpdated = itemRepo.Update(new item(code,itemName,qty,price));
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Item Updated Successfully").show();
             }else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                new Alert(Alert.AlertType.ERROR).show();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -91,19 +74,12 @@ public class ItemForm {
     public void btnDeleteOnAction(ActionEvent actionEvent) {
         String code = txtCode.getText();
 
-        String sql = "DELETE FROM items WHERE Code =?";
-
         try {
-            Connection connection = DbConnection.getInstance().getConnection();
-            PreparedStatement pstm = connection.prepareStatement(sql);
-
-            pstm.setString(1, code);
-
-            boolean isDeleted = pstm.executeUpdate() > 0;
+            boolean isDeleted = itemRepo.Delete(code);
             if (isDeleted) {
                 new Alert(Alert.AlertType.INFORMATION, "Item Deleted Successfully").show();
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                new Alert(Alert.AlertType.ERROR).show();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -111,7 +87,10 @@ public class ItemForm {
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {
-
+        txtCode.setText("");
+        txtItemName.setText("");
+        txtQTY.setText("");
+        txtPrice.setText("");
     }
 
     public void btnHomeOnAction(ActionEvent actionEvent) {

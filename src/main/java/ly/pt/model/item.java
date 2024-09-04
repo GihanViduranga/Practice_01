@@ -3,13 +3,13 @@ package ly.pt.model;
 public class item {
     private String Code;
     private String ItemName;
-    private int QTY;
+    private String QTY;
     private String Price;
 
     public item() {
     }
 
-    public item(String code, String itemName, int QTY, String price) {
+    public item(String code, String itemName, String QTY, String price) {
         Code = code;
         ItemName = itemName;
         this.QTY = QTY;
@@ -32,11 +32,11 @@ public class item {
         ItemName = itemName;
     }
 
-    public int getQTY() {
+    public String getQTY() {
         return QTY;
     }
 
-    public void setQTY(int QTY) {
+    public void setQTY(String QTY) {
         this.QTY = QTY;
     }
 
@@ -53,7 +53,7 @@ public class item {
         return "item{" +
                 "Code='" + Code + '\'' +
                 ", ItemName='" + ItemName + '\'' +
-                ", QTY=" + QTY +
+                ", QTY='" + QTY + '\'' +
                 ", Price='" + Price + '\'' +
                 '}';
     }
